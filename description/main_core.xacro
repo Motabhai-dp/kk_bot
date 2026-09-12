@@ -47,6 +47,8 @@
     <!-- Root link starts from here -->
     <link name="root_link">
     </link>
+    <link name="base_footprint">
+    </link>
     <link name="base_link">
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
@@ -71,6 +73,11 @@
     </link>
     <joint name="root_to_base" type="fixed">
         <parent link="root_link"/>
+        <child link="base_footprint"/>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+    <joint name="base_footprint_to_base_link" type="fixed">
+        <parent link="base_footprint"/>
         <child link="base_link"/>
         <origin xyz="0 0 0" rpy="0 0 0" />
     </joint>
@@ -152,27 +159,17 @@
     <xacro:rim_macro name="back" xyz="-0.072 0 0" rpy="1.570796326794896 0 1.570796326794896"/>
 
     <gazebo>
-        <plugin
-        filename="ignition-gazebo-velocity-control-system"
-        name="gz::sim::systems::VelocityControl">
+        <plugin filename="libgazebo_ros_planar_move.so"
+                name="gazebo_ros_planar_move">
+            <ros>
+                <remapping>cmd_vel:=/cmd_vel</remapping>
+            </ros>
+            <update_rate>100</update_rate>
+            <publish_odom>true</publish_odom>
+            <publish_odom_tf>true</publish_odom_tf>
+            <odometry_frame>odom</odometry_frame>
+            <robot_base_frame>base_footprint</robot_base_frame>
         </plugin>
-
-        <plugin filename="ignition-gazebo-joint-state-publisher-system"
-        name="ignition::gazebo::systems::JointStatePublisher">
-        </plugin>
-
-        <!-- ign topic -t "/model/{bot_name}/joint/arm_base/cmd_vel" -m ignition.msgs.Double -p "data: 10.0" -->
-        <plugin filename="ignition-gazebo-joint-controller-system"
-        name="gz::sim::systems::JointController">
-        <joint_name>arm_base</joint_name>
-        </plugin>
-
-        <plugin filename="ignition-gazebo-joint-controller-system"
-        name="gz::sim::systems::JointController">
-        <joint_name>arm_elbow</joint_name>
-        </plugin>
-
-        
     </gazebo>
 
 </robot>
