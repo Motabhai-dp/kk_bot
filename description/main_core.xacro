@@ -47,8 +47,6 @@
     <!-- Root link starts from here -->
     <link name="root_link">
     </link>
-    <link name="base_footprint">
-    </link>
     <link name="base_link">
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
@@ -73,11 +71,6 @@
     </link>
     <joint name="root_to_base" type="fixed">
         <parent link="root_link"/>
-        <child link="base_footprint"/>
-        <origin xyz="0 0 0" rpy="0 0 0" />
-    </joint>
-    <joint name="base_footprint_to_base_link" type="fixed">
-        <parent link="base_footprint"/>
         <child link="base_link"/>
         <origin xyz="0 0 0" rpy="0 0 0" />
     </joint>
@@ -165,10 +158,6 @@
                 <remapping>cmd_vel:=/cmd_vel</remapping>
             </ros>
             <update_rate>100</update_rate>
-            <publish_odom>true</publish_odom>
-            <publish_odom_tf>true</publish_odom_tf>
-            <odometry_frame>odom</odometry_frame>
-            <robot_base_frame>base_footprint</robot_base_frame>
         </plugin>
     </gazebo>
 
