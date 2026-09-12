@@ -45,6 +45,8 @@
     </xacro:macro>
 
     <!-- Root link starts from here -->
+    <link name="base_footprint">
+    </link>
     <link name="root_link">
     </link>
     <link name="base_link">
@@ -69,6 +71,12 @@
         </inertial>
 
     </link>
+    <joint name="footprint_to_root" type="fixed">
+        <parent link="base_footprint"/>
+        <child link="root_link"/>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+
     <joint name="root_to_base" type="fixed">
         <parent link="root_link"/>
         <child link="base_link"/>
