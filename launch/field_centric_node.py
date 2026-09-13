@@ -13,7 +13,6 @@ class FieldCentricNode(Node):
         super().__init__('field_centric_node')
 
         self.yaw = None
-        self.initial_yaw = None
         self.command_subscriber = self.create_subscription(
             Twist,
             '/cmd_vel_raw',
@@ -33,16 +32,13 @@ class FieldCentricNode(Node):
         sin_yaw = 2.0 * (orientation.w * orientation.z + orientation.x * orientation.y)
         cos_yaw = 1.0 - 2.0 * (orientation.y * orientation.y + orientation.z * orientation.z)
         self.yaw = math.atan2(sin_yaw, cos_yaw)
-        if self.initial_yaw is None:
-            self.initial_yaw = self.yaw
 
     def command_callback(self, message):
         if self.yaw is None:
             return
 
-        relative_yaw = self.yaw - self.initial_yaw
-        cos_yaw = math.cos(relative_yaw)
-        sin_yaw = math.sin(relative_yaw)
+        cos_yaw = math.cos(self.yaw)
+        sin_yaw = math.sin(self.yaw)
 
         transformed_command = Twist()
         transformed_command.linear.x = (
