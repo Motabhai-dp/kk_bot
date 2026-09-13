@@ -21,10 +21,17 @@ def generate_launch_description():
 		}],
 		remappings=[
 			('joy', '/joy'),
-			('cmd_vel', '/cmd_vel'),
+			('cmd_vel', '/cmd_vel_raw'),
 		],
+		output='screen')
+
+	field_centric_node = Node(
+		package='kk_bot',
+		executable='field_centric_node.py',
+		name='field_centric_node',
 		output='screen')
 
 	return LaunchDescription([
 		teleop_node,
+		field_centric_node,
 	])

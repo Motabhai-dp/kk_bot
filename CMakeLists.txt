@@ -37,4 +37,9 @@ install(
   DESTINATION share/${PROJECT_NAME}
 )
 
+install(
+  PROGRAMS launch/field_centric_node.py
+  DESTINATION lib/${PROJECT_NAME}
+)
+
 ament_package()

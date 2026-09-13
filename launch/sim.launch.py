@@ -39,24 +39,24 @@ def generate_launch_description():
 
 
     # This is joint state publisher GUI Node. It is necessary to run this to be able to control the joints of the robot in RVIZ.
-    joint_state_publisher_gui = Node(
-        package='joint_state_publisher_gui',
-        executable='joint_state_publisher_gui',
-        name='joint_state_publisher_gui',
-        parameters=[{'use_sim_time': True}],
-        output='screen')
+    # joint_state_publisher_gui = Node(
+    #     package='joint_state_publisher_gui',
+    #     executable='joint_state_publisher_gui',
+    #     name='joint_state_publisher_gui',
+    #     parameters=[{'use_sim_time': True}],
+    #     output='screen')
 
     
     # This is path to RVIZ config file with desired parameters and view. Change the name of the config file if you are using a custom one.
-    rviz_config = os.path.join(
-        get_package_share_directory(package_name), 'config', 'view_bot.rviz')
-    rviz = Node(
-        package='rviz2',
-        executable='rviz2',
-        name='rviz2',
-        arguments=['-d', rviz_config],
-        parameters=[{'use_sim_time': True}],
-        output='screen')
+    # rviz_config = os.path.join(
+    #     get_package_share_directory(package_name), 'config', 'view_bot.rviz')
+    # rviz = Node(
+    #     package='rviz2',
+    #     executable='rviz2',
+    #     name='rviz2',
+    #     arguments=['-d', rviz_config],
+    #     parameters=[{'use_sim_time': True}],
+    #     output='screen')
 
 
 
@@ -64,7 +64,7 @@ def generate_launch_description():
     return LaunchDescription([
         rsp,
         gazebo,
-        joint_state_publisher_gui,
-        rviz,
+        # joint_state_publisher_gui,
+        # rviz,
         spawn_entity,
     ])
