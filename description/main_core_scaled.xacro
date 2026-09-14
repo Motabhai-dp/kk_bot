@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="hb_bot_scaled">
 
-    <xacro:property name="s" value="1.0" /> # Scale factor for the robot model
+    <xacro:property name="s" value="4.0" /> # Scale factor for the robot model
     <xacro:property name="s3" value="${s*s*s}" />
     <xacro:property name="s5" value="${s*s*s*s*s}" />
 

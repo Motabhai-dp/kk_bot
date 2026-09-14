@@ -22,7 +22,7 @@ def generate_launch_description():
         default_value=os.path.join(
             get_package_share_directory(package_name),
             'worlds',
-            'mod_race.world'
+            'mod_race_2.world'
         )
     )
 
